@@ -1,10 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import { Button } from './components/Button';
 import styled from 'styled-components';
-import {useState} from 'react';
-
-import { Icon } from './components/Icon/Icon';
 import { FavoriteButton } from './components/FavoriteButton';
 import { ToggleButton } from './components/ToggleButton';
 import { MakeButton } from './components/MakeButton';
