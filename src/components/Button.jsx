@@ -142,8 +142,8 @@ export function Button({
         iconPlacement={iconPlacement}
         onClick={onClick}
       >
-        {iconPlacement != "none" ? <Icon type={icon} size={iconSize} /> : null}{" "}
-        {iconPlacement != "only" ? (
+        {iconPlacement !== "none" ? <Icon type={icon} size={iconSize} /> : null}{" "}
+        {iconPlacement !== "only" ? (
           <ButtonLabel size={size} iconPlacement={iconPlacement}>
             {label}
           </ButtonLabel>
