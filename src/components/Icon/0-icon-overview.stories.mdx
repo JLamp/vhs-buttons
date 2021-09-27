@@ -1,0 +1,55 @@
+import { Meta, Subtitle } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Icon/Overview" />
+
+# Icons
+
+<Subtitle>
+  Icons are visual expressions in the UI. Standardizing them gives continuity across an app. VHS
+  helps you standard these icons.
+</Subtitle>
+
+## How to use
+
+Want an error icon?
+
+```jsx
+<Icon type="error" />
+```
+
+## Adding an icon
+
+### 1. Add icon to library.
+
+Create a new icon in VHS within the icon library: `vhs/src/components/Icon/icons`.
+
+```jsx
+export const FooIcon = ({ color, ...props }) => {
+  return (
+    <svg {...props}>
+      <path fill={color} d="1 2 3 4 5" />
+    </svg>
+  );
+};
+```
+
+### 2. Import/Export the component
+
+Import and export the icon inside `vhs/src/components/Icon/icons/index.jsx`, along with the other icons:
+
+```jsx
+export { FooIcon } from './FooIcon';
+```
+
+### 3. Add icon to iconMap
+
+`vhs/src/components/Icon/iconMap.jsx`
+
+The keys of `iconMap` are the "type" names in `<Icon type="NAME" />`. That way, we can name icons several things. For example, the "error" icon is actually the "triangle" icon. "triangle" is more descriptive of the icon, while "error" is helpful for standardizing naming for icon use.
+
+```jsx
+const iconMap = {
+  error: 'TriangleIcon',
+  triangle: 'TriangleIcon',
+};
+```
