@@ -149,7 +149,9 @@ export function MakeButton() {
             onChange={(e) => {
               const selectedValue = e.target.value;
               changeHideToolTip(selectedValue);
+              console.log(selectedValue);
             }}
+            disabled={iconPlacement !== "only" ? true : false}
           >
             <option value={false}>False</option>
             <option value={true}>True</option>
