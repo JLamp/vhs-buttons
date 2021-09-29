@@ -3,6 +3,7 @@ import { useState } from "react";
 import { colors } from "../colors";
 import styled from "styled-components";
 import { iconMap } from "./Icon/iconMap";
+import { Switch } from "@mui/material";
 
 const iconList = Object.keys(iconMap);
 
@@ -10,9 +11,12 @@ const InputsContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 16px;
+  flex-wrap: wrap;
+  max-width: 600px;
   & label {
     font-size: 12px;
     font-weight: 600;
+    margin-top: 16px;
     margin-bottom: 4px;
     padding-right: 8px;
   }
@@ -29,6 +33,14 @@ const StyledForm = styled.form`
   margin-right: 16px;
 `;
 
+const ButtonContainer = styled.div`
+  max-width: 240px;
+  border-radius: 8px;
+  padding: 24px 0;
+  // background: black;
+  margin: 16px 0;
+`;
+
 export function MakeButton() {
   const [size, changeSize] = useState("lg");
   const [style, changeStyle] = useState("contained");
@@ -36,19 +48,37 @@ export function MakeButton() {
   const [color, changeColor] = useState("#1e64f0");
   const [iconPlacement, changeIconPlacement] = useState("left");
   const [icon, changeIcon] = useState("ab-test");
+  const [loading, changeLoading] = useState(false);
+  function handleLoading() {
+    const STATE = loading;
+    changeLoading(!STATE);
+  }
   const [hideToolTip, changeHideToolTip] = useState(false);
+  function handleHideToolTip() {
+    const STATE = loading;
+    changeHideToolTip(!STATE);
+  }
+  const [fullWidth, changeFullWidth] = useState(false);
+  function handleFullWidth() {
+    const STATE = fullWidth;
+    changeFullWidth(!STATE);
+  }
   return (
     <div>
       <h3> Make A Button </h3>
-      <Button
-        size={size}
-        buttonStyle={style}
-        label={label.length > 0 ? label : "Button"}
-        color={color}
-        iconPlacement={iconPlacement}
-        icon={icon}
-        hideToolTip={hideToolTip}
-      />
+      <ButtonContainer>
+        <Button
+          size={size}
+          buttonStyle={style}
+          label={label.length > 0 ? label : "Button"}
+          color={color}
+          iconPlacement={iconPlacement}
+          icon={icon}
+          hideToolTip={hideToolTip}
+          loading={loading}
+          fullWidth={fullWidth}
+        />
+      </ButtonContainer>
       <InputsContainer>
         {/* LABEL */}
         <StyledForm>
@@ -142,20 +172,26 @@ export function MakeButton() {
             <option value={"none"}>None</option>
           </select>
         </StyledForm>
+
         {/* Hide ToolTip */}
         <StyledForm>
           <label>Hide ToolTip?</label>
-          <select
-            onChange={(e) => {
-              const selectedValue = e.target.value;
-              changeHideToolTip(selectedValue);
-              console.log(selectedValue);
-            }}
-            disabled={iconPlacement !== "only" ? true : false}
-          >
-            <option value={false}>False</option>
-            <option value={true}>True</option>
-          </select>
+          <Switch
+            onChange={handleHideToolTip}
+            disabled={iconPlacement === "only" ? false : true}
+          />
+        </StyledForm>
+
+        {/* Full Width */}
+        <StyledForm>
+          <label>Full Width?</label>
+          <Switch onChange={handleFullWidth} />
+        </StyledForm>
+
+        {/* Loading */}
+        <StyledForm>
+          <label>Loading?</label>
+          <Switch onChange={handleLoading} />
         </StyledForm>
       </InputsContainer>
     </div>

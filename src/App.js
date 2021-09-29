@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import { FavoriteButton } from './components/FavoriteButton';
 import { ToggleButton } from './components/ToggleButton';
 import { MakeButton } from './components/MakeButton';
+import { LoadingButton } from './components/LoadingButton';
+import { Switch } from '@mui/material';
+import { LoadingButtonSection } from './components/LoadingButtonSection';
 
 const Container = styled.div`
   display: flex;
@@ -39,7 +42,7 @@ function App() {
       <h3>Button Examples</h3>
       <h4>Large</h4>
       <ButtonGroup>
-        <Button size="lg" buttonStyle='contained' />
+        <Button size="lg" buttonStyle='contained'/>
         <Button size="lg" buttonStyle='outlined' />
         <Button size="lg" buttonStyle='text' />
         <Button size="lg" buttonStyle='text'  iconPlacement="only"/>
@@ -68,6 +71,7 @@ function App() {
       <ToggleButton toggleOffIcon="private-user-sessions" toggleOnIcon="mute-screen" toggleOffLabel="Disable Screen Sharing" toggleOnLabel="Enable Screen Sharing"/>
       </ToggleButtonContainer>
       </>
+      <Switch />
     </Container>
   );
 }

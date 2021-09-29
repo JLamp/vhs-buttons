@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { darken, transparentize } from "polished";
-import DeleteIcon from "@mui/icons-material/Delete";
 import Tooltip from "@mui/material/Tooltip";
 import { Icon } from "./Icon/Icon";
 
@@ -87,28 +86,57 @@ const ButtonLabel = styled.span`
 const StyledButton = styled.button`
   font-weight: 600;
   border-radius: 4px;
-  width: max-content;
+  width: ${(props) => (props.fullWidth ? "100%" : "max-content")};
   transition: all 110ms;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  ${(props) =>
+    props.buttonStyle === "contained"
+      ? ContainedStyles
+      : props.buttonStyle === "outlined"
+      ? OutlinedStyles
+      : TextStyles};
+  ${(props) =>
+    props.size === "lg"
+      ? LargeStyles
+      : props.size === "md"
+      ? MediumStyles
+      : SmallStyles};
+  opacity: ${(props) => (props.loading || props.disabled ? 0.8 : 1)};
+  & div {
+    transition: all 110ms;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: max-content;
+  position: relative;
+`;
+
+const LabelContainer = styled.div`
+  display: flex;
+  position: relative;
+  align-items: center;
+  opacity: ${(props) => (props.loading ? 0 : 1)};
   flex-direction: ${(props) =>
     props.iconPlacement === "top"
       ? "column"
       : props.iconPlacement === "right"
       ? "row-reverse"
       : "row"};
-  align-items: center;
-  ${(props) =>
-    props.buttonStyle === "contained"
-      ? ContainedStyles
-      : props.buttonStyle === "outlined"
-      ? OutlinedStyles
-      : TextStyles}
-  ${(props) =>
-    props.size === "lg"
-      ? LargeStyles
-      : props.size === "md"
-      ? MediumStyles
-      : SmallStyles}
+`;
+
+const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  opacity: ${(props) => (props.loading ? 1 : 0)};
 `;
 
 export function Button({
@@ -120,6 +148,8 @@ export function Button({
   icon,
   onClick,
   hideToolTip,
+  loading,
+  fullWidth,
 }) {
   const iconSize = size === "sm" ? "sm" : "md";
   return (
@@ -141,13 +171,24 @@ export function Button({
         label={label}
         iconPlacement={iconPlacement}
         onClick={onClick}
+        loading={loading}
+        fullWidth={fullWidth}
       >
-        {iconPlacement !== "none" ? <Icon type={icon} size={iconSize} /> : null}{" "}
-        {iconPlacement !== "only" ? (
-          <ButtonLabel size={size} iconPlacement={iconPlacement}>
-            {label}
-          </ButtonLabel>
-        ) : null}
+        <ButtonContainer>
+          <LoadingContainer loading={loading}>
+            <Icon type="spinner" size={iconSize} />
+          </LoadingContainer>
+          <LabelContainer loading={loading} iconPlacement={iconPlacement}>
+            {iconPlacement !== "none" ? (
+              <Icon type={icon} size={iconSize} />
+            ) : null}{" "}
+            {iconPlacement !== "only" ? (
+              <ButtonLabel size={size} iconPlacement={iconPlacement}>
+                {label}
+              </ButtonLabel>
+            ) : null}
+          </LabelContainer>
+        </ButtonContainer>
       </StyledButton>
     </Tooltip>
   );
@@ -161,4 +202,6 @@ Button.defaultProps = {
   iconPlacement: "left",
   icon: "ab-test",
   hideToolTip: false,
+  loading: false,
+  fullWidth: false,
 };
