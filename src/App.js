@@ -71,7 +71,6 @@ function App() {
       <ToggleButton toggleOffIcon="private-user-sessions" toggleOnIcon="mute-screen" toggleOffLabel="Disable Screen Sharing" toggleOnLabel="Enable Screen Sharing"/>
       </ToggleButtonContainer>
       </>
-      <Switch />
     </Container>
   );
 }
