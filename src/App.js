@@ -42,24 +42,24 @@ function App() {
       <h3>Button Examples</h3>
       <h4>Large</h4>
       <ButtonGroup>
-        <Button size="lg" buttonStyle='contained'/>
-        <Button size="lg" buttonStyle='outlined' />
-        <Button size="lg" buttonStyle='text' />
-        <Button size="lg" buttonStyle='text'  iconPlacement="only"/>
+        <Button size="lg" variant='contained'/>
+        <Button size="lg" variant='outlined' />
+        <Button size="lg" variant='text' />
+        <Button size="lg" variant='text'  iconPlacement="only"/>
       </ButtonGroup>
       <h4>Medium</h4>
       <ButtonGroup>
-        <Button size="md" buttonStyle='contained' />
-        <Button size="md" buttonStyle='outlined' />
-        <Button size="md" buttonStyle='text' />
-        <Button size="md" buttonStyle='text'  iconPlacement="only"/>
+        <Button size="md" variant='contained' />
+        <Button size="md" variant='outlined' />
+        <Button size="md" variant='text' />
+        <Button size="md" variant='text'  iconPlacement="only"/>
       </ButtonGroup>
       <h4>Small</h4>
       <ButtonGroup>
-        <Button size="sm" buttonStyle='contained'/>
-        <Button size="sm" buttonStyle='outlined'/>
-        <Button size="sm" buttonStyle='text'/>
-        <Button size="sm" buttonStyle='text'  iconPlacement="only"/>
+        <Button size="sm" variant='contained'/>
+        <Button size="sm" variant='outlined'/>
+        <Button size="sm" variant='text'/>
+        <Button size="sm" variant='text'  iconPlacement="only"/>
       </ButtonGroup>
       <MakeButton />
       <FavoriteButton />

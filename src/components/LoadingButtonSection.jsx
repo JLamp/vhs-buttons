@@ -27,7 +27,7 @@ export function LoadingButtonSection() {
       <Switch onChange={handleChange} />
       <ButtonGroup>
         <LoadingButton
-          buttonStyle="outlined"
+          variant="outlined"
           loading={loading}
           loadingText="Saving"
         />

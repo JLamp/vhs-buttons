@@ -16,7 +16,7 @@ export function ToggleButton({
     <Button
       color="#fa4040"
       size="lg"
-      buttonStyle="outlined"
+      variant="outlined"
       iconPlacement="only"
       icon={toggleOnIcon}
       label={toggleOnLabel}
@@ -27,7 +27,7 @@ export function ToggleButton({
     <Button
       color="white"
       size="lg"
-      buttonStyle="outlined"
+      variant="outlined"
       iconPlacement="only"
       icon={toggleOffIcon}
       label={toggleOffLabel}

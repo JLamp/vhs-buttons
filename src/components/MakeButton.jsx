@@ -47,7 +47,7 @@ export function MakeButton() {
   const [label, changeLabel] = useState("Button");
   const [color, changeColor] = useState("#1e64f0");
   const [iconPlacement, changeIconPlacement] = useState("left");
-  const [icon, changeIcon] = useState("ab-test");
+  const [icon, changeIcon] = useState("");
   const [loading, changeLoading] = useState(false);
   function handleLoading() {
     const STATE = loading;
@@ -69,7 +69,7 @@ export function MakeButton() {
       <ButtonContainer>
         <Button
           size={size}
-          buttonStyle={style}
+          variant={style}
           label={label.length > 0 ? label : "Button"}
           color={color}
           iconPlacement={iconPlacement}
@@ -102,6 +102,7 @@ export function MakeButton() {
               changeIcon(selectedValue);
             }}
           >
+            <option value={""}>None</option>
             {iconList.map((icon) => (
               <option key={icon} value={icon}>
                 {icon}
@@ -127,7 +128,7 @@ export function MakeButton() {
 
         {/* STYLE */}
         <StyledForm>
-          <label>Button Style</label>
+          <label>Variant</label>
           <select
             onChange={(e) => {
               const selectedValue = e.target.value;
@@ -169,7 +170,6 @@ export function MakeButton() {
             <option value={"right"}>Right</option>
             <option value={"top"}>Top</option>
             <option value={"only"}>Only</option>
-            <option value={"none"}>None</option>
           </select>
         </StyledForm>
 

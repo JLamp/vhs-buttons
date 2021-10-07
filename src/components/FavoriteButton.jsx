@@ -13,7 +13,7 @@ export function FavoriteButton() {
         <Button
           color="#fabe1f"
           size="md"
-          buttonStyle="text"
+          variant="text"
           iconPlacement="only"
           icon="favorite"
           label="Remove Favorite"
@@ -23,7 +23,7 @@ export function FavoriteButton() {
         <Button
           color="#37373c"
           size="md"
-          buttonStyle="text"
+          variant="text"
           iconPlacement="only"
           icon="favorite"
           label="Favorite"

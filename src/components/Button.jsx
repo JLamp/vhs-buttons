@@ -69,20 +69,17 @@ const TextStyles = css`
   }
 `;
 
-const MarginReset = css`
-  margin: unset;
-`;
+const ButtonLabel = styled.span``;
 
-const ButtonLabel = styled.span`
-  ${(props) =>
-    props.iconPlacement === "left"
-      ? "margin-left"
-      : props.iconPlacement === "right"
+const StyledIcon = styled(Icon)`
+  ${({ iconPlacement }) =>
+    iconPlacement === "left"
       ? "margin-right"
-      : "margin-top"}: ${(props) => (props.size === "sm" ? "4px" : "8px")};
-  ${(props) => props.iconPlacement === "none" && MarginReset};
+      : iconPlacement === "right"
+      ? "margin-left"
+      : "margin-bottom"}: ${({ size }) => (size === "sm" ? "4px" : "8px")};
+  ${({ iconPlacement }) => iconPlacement === "only" && "margin: 2px"};
 `;
-
 const StyledButton = styled.button`
   font-weight: 600;
   border-radius: 4px;
@@ -92,9 +89,9 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   ${(props) =>
-    props.buttonStyle === "contained"
+    props.variant === "contained"
       ? ContainedStyles
-      : props.buttonStyle === "outlined"
+      : props.variant === "outlined"
       ? OutlinedStyles
       : TextStyles};
   ${(props) =>
@@ -141,7 +138,7 @@ const LoadingContainer = styled.div`
 
 export function Button({
   size,
-  buttonStyle,
+  variant,
   color,
   label,
   iconPlacement,
@@ -166,7 +163,7 @@ export function Button({
     >
       <StyledButton
         size={size}
-        buttonStyle={buttonStyle}
+        variant={variant}
         color={color}
         label={label}
         iconPlacement={iconPlacement}
@@ -179,9 +176,13 @@ export function Button({
             <Icon type="spinner" size={iconSize} />
           </LoadingContainer>
           <LabelContainer loading={loading} iconPlacement={iconPlacement}>
-            {iconPlacement !== "none" ? (
-              <Icon type={icon} size={iconSize} />
-            ) : null}{" "}
+            {icon && (
+              <StyledIcon
+                type={icon}
+                size={iconSize}
+                iconPlacement={iconPlacement}
+              />
+            )}{" "}
             {iconPlacement !== "only" ? (
               <ButtonLabel size={size} iconPlacement={iconPlacement}>
                 {label}
@@ -196,11 +197,11 @@ export function Button({
 
 Button.defaultProps = {
   size: "lg",
-  buttonStyle: "contained",
+  variant: "contained",
   color: "#1e64f0",
   label: "Button",
   iconPlacement: "left",
-  icon: "ab-test",
+  icon: null,
   hideToolTip: false,
   loading: false,
   fullWidth: false,

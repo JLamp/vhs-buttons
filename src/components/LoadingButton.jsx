@@ -4,7 +4,7 @@ import { Icon } from "./Icon/Icon";
 
 export function LoadingButton({
   size,
-  buttonStyle,
+  variant,
   color,
   label,
   iconPlacement,
@@ -20,13 +20,12 @@ export function LoadingButton({
   return (
     <Button
       size={size}
-      buttonStyle={buttonStyle}
+      variant={variant}
       color={color}
       label={LABEL}
       icon={ICON}
       iconPlacement={iconPlacement}
       hideToolTip={hideToolTip}
     />
-    
   );
 }
