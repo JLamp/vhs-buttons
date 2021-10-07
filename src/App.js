@@ -4,9 +4,6 @@ import styled from 'styled-components';
 import { FavoriteButton } from './components/FavoriteButton';
 import { ToggleButton } from './components/ToggleButton';
 import { MakeButton } from './components/MakeButton';
-import { LoadingButton } from './components/LoadingButton';
-import { Switch } from '@mui/material';
-import { LoadingButtonSection } from './components/LoadingButtonSection';
 
 const Container = styled.div`
   display: flex;
